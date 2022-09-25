@@ -1,19 +1,48 @@
-message = File.open(ARGV[0], "r")  #this takes the first argument from the terminal
-incoming_text = message.read
-message.close
+class NightWriter
+  attr_accessor :message, :braille_writer
+#
+  def initialize
+  @message = ARGV[0]
+  @braille_writer = ARGV[1]
+  end
+end
 
-char_num = incoming_text.length
+night_writer = NightWriter.new
 
-braille_writer = File.open(ARGV[1], "w")
-braille_writer.write(incoming_text)
-braille_writer.close
 
-# p "Created #{ARGV[1]} containing 256 characters"
 
-p "Created '#{ARGV[1]}' containing #{char_num} characters"
+#this takes the first argument from the terminal
+#   # incoming_text = message.read
+#   # message.close
 
+
+
+  # def self.from_txt(input)
+
+
+# File.open(message, "r") do |file|  #this lets me iterate through the message
+#   file.read
+#
+# message = File.open(ARGV[0], "r")  #this takes the first argument from the terminal. Dont put these in the initialize
+# incoming_text = message.read  #turn these into methods) **frosting to the file .open method
+# message.close   #(turn these into methods)  **frosting to the file within the open method
+#
+#
+# char_num = incoming_text.length
+#
+# braille_writer = File.open(ARGV[1], "w")
+# braille_writer.write(incoming_text)
+# braille_writer.close
+#
+# p "Created '#{ARGV[1]}' containing #{char_num} characters"
+
+
+
+
+# end
 # handle = File.open("filename.txt", "r")   #example of how to write code to open a file
 
+# Need to make an instance of the class outside of the class itself to have access to the info within
 
 # file = File.open(ARGV[0], "r") do |file|
 #
