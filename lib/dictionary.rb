@@ -1,4 +1,7 @@
+require "./lib/file_manageable_module.rb"
+
 class Dictionary
+  include FileManeagable
   attr_reader :alphabet
 
   def initialize(alphabet)

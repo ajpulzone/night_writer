@@ -1,11 +1,12 @@
-# require "./lib/file_maneagable_module"
+require "./lib/file_manageable_module.rb"
 
 class NightWriter
+  include FileManeagable
   # include FileManeagable
   attr_accessor :message, :braille_writer
 #
   def initialize
-  @message = ARGV[0]
+  @message_text = message
   @braille_writer = ARGV[1]
   end
 
@@ -22,7 +23,6 @@ class NightWriter
     text = file.write(incoming_text)
     puts "Created #{ARGV[1]} containing #{incoming_text.length} characters."
   end
-
 end
 
 night_writer = NightWriter.new

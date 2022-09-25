@@ -1,4 +1,5 @@
 require "./lib/dictionary.rb"
+require "./lib/file_manageable_module.rb"
 
 RSpec.describe Dictionary do
 
