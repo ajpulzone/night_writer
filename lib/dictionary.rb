@@ -41,13 +41,12 @@ class Dictionary
 
   def stack_braille(letter)
     braille_letter = letter_lookup(letter)
-      a = braille_letter.slice(0..1)
-      b = braille_letter.slice(2..3)
-      c = braille_letter.slice(4..5)
-      a.insert(2, "\n")
-      b.insert(2, "\n")
-      test = (a + b + c)
-      require "pry";binding.pry
+      first_line = braille_letter.slice(0..1)
+      second_line = braille_letter.slice(2..3)
+      third_line = braille_letter.slice(4..5)
+      first_line.insert(2, "\n")
+      second_line.insert(2, "\n")
+      (first_line + second_line + third_line)
   end
 
 end

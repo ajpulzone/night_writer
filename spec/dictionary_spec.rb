@@ -75,7 +75,7 @@ RSpec.describe Dictionary do
 end
 
   describe "#stack_braille" do
-    it "will return the braile letter in 2 x 3 setup" do
+    it "will return the braile letter in 2 x 3 layout" do
       expect(@dictionary.stack_braille("c")).to eq("00\n" +
                                                    "..\n" +
                                                    "..")

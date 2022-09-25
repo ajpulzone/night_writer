@@ -1,13 +1,47 @@
+# require "./lib/file_maneagable_module"
+
 class NightWriter
+  # include FileManeagable
   attr_accessor :message, :braille_writer
 #
   def initialize
   @message = ARGV[0]
   @braille_writer = ARGV[1]
   end
+
+  def file_reader(message, mode)
+    file = File.open(message, mode)
+    english_text = file.read
+    file.close
+    english_text
+  end
+
+  def file_writer(message, mode)
+    incoming_text = file_reader(ARGV[0], "r")
+    file = File.open(message, mode)
+    text = file.write(incoming_text)
+    puts "Created #{ARGV[1]} containing #{incoming_text.length} characters."
+  end
+
 end
 
 night_writer = NightWriter.new
+night_writer.file_reader(ARGV[0], "r")
+night_writer.file_writer(ARGV[1], "w")
+
+# File.open(message, "r") do |file|  #this lets me iterate through the message
+#   file.read
+
+# message = File.open(ARGV[0], "r")  #this takes the first argument from the terminal. Dont put these in the initialize
+# incoming_text = message.read  #turn these into methods) **frosting to the file .open method
+# message.close   #(turn these into methods)  **frosting to the file within the open method
+#
+#
+# char_num = incoming_text.length
+#
+# braille_writer = File.open(ARGV[1], "w")
+# braille_writer.write(incoming_text)
+# braille_writer.close
 
 
 
