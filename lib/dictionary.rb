@@ -51,28 +51,78 @@ class Dictionary
   end
 
   def stack_braille_word(word)
-    # *need to iterate over the whole word and take the first, second, 3rd pairs
-    # and assign them to lines 1, 2, 3
     braille_word = word_convert(word)
+    counter = 0
+    stacked_braille_output = ""
     first_line = []
     second_line = []
     third_line = []
     braille_word.each do |char|
-    first_line << char.slice(0..1)
-    second_line << char.slice(2..3)
-    third_line << char.slice(4..5)
+      first_line << char.slice(0..1)
+      second_line << char.slice(2..3)
+      third_line << char.slice(4..5)
+      counter += 1
     end
-    output = ("#{first_line.join}\n" + "#{second_line.join}\n" + "#{third_line.join}")
-    output
+    while counter > 0
+      stacked_braille_output += (first_line.shift(20).join + "\n" + second_line.shift(20).join + "\n" + third_line.shift(20).join)
+      stacked_braille_output += "\n" if counter > 0
+      break
+    end
+    stacked_braille_output
   end
 
-  def line_control(message)
 
+  def braille_letter_lookup(braille_letter)
+    english_letter = []
+    @alphabet.find do |eng_letter, braille|
+      if braille_letter == braille
+         english_letter << eng_letter
+      end
+    end
+    english_letter[0]
+end
+
+def braille_word_convert(braille_word)
+    braille_word_array = []
+    counter = 0
+    length = braille_word.length
+    until counter == length
+      braille_word.each_char do |char|
+        index = 0
+        braille_word_array << braille_word.slice!(index..(index+5))
+        counter += 6
+        index += 5
+        break if counter == length
+      end
+    letters = []
+      braille_word_array.map do |letter|
+        letters << braille_letter_lookup(letter)
+      end
+    end
+  letters.join
   end
 end
 
-
-
-
-#Make a braille dictionary to have a brail letter lookup, then a whole sentance, etc
-#Focus on the translation portion, then do the same things as the english dictionary
+# def unstack_braille_word(word)
+#   def stack_braille_word(word)
+#     braille_word = word_convert(word)
+#     counter = 0
+#     stacked_braille_output = ""
+#     first_line = []
+#     second_line = []
+#     third_line = []
+#     braille_word.each do |char|
+#       first_line << char.slice(0..1)
+#       second_line << char.slice(2..3)
+#       third_line << char.slice(4..5)
+#       counter += 1
+#     end
+#     while counter > 0
+#       stacked_braille_output += (first_line.shift(20).join + "\n" + second_line.shift(20).join + "\n" + third_line.shift(20).join)
+#       stacked_braille_output += "\n" if counter > 0
+#       break
+#     end
+#     stacked_braille_output
+#   end
+# #Make a braille dictionary to have a brail letter lookup, then a whole sentance, etc
+# #Focus on the translation portion, then do the same things as the english dictionary

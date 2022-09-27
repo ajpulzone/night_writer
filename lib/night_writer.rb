@@ -1,18 +1,24 @@
+require "./lib/dictionary.rb"
+
 class NightWriter
   attr_reader :file
 
   def file_reader(message)
-    file = File.read(message)
-  end
-
-  def translator
+    file = File.open(ARGV[0], "r")
+    message = file.read
   end
 
   def file_writer(message)
-    incoming_text = file_reader(ARGV[0])
-    file = File.open(message)
-    text = file.write(incoming_text)
-    puts "Created #{ARGV[1]} containing #{incoming_text.length} characters."
+    dictionary = Dictionary.new
+    file = File.open(ARGV[0], 'r')
+    message_text = file.read
+    message = dictionary.word_convert(message_text)
+    braille_message = message.join
+    # test = dictionary.stack_braille_word(braille_message)  #attempt to get braille stacked when transfered. Not working
+    braille_writer = File.open(ARGV[1], 'w')
+    braille_writer.write(braille_message)
+    puts "Created #{ARGV[1]} containing #{braille_message.length} characters"
+    braille_writer.close
   end
 end
 
@@ -20,19 +26,28 @@ night_writer = NightWriter.new
 night_writer.file_reader(ARGV[0])
 night_writer.file_writer(ARGV[1])
 
+#   def translator
+#     english_translator = Dictionary.new
+#     handle = File.open(ARGV[0], 'r')
+# message_text = handle.read
+# char_nums = message_text.length
+# braille_writer = File.open(ARGV[1], 'w')
+# puts "CREATED #{ARGV[1]} CONTAINING #{char_nums} CHARACTERS"
+# braille_writer.write(english_translator.write_braille(message_text))
+#   end
 
 
 
 # english_file = File.open(ARGV[0], "r")
 # english_message = english_file.read
 # english_file.close
-#
+
 # braille_file = File.open(ARGV[1], "w")
 # braille_file.write(english_message)
 # braille_file.close
 # puts "Created #{ARGV[1]} containing #{english_message.length} characters."
-#
-#
+
+
 
 
 
