@@ -51,7 +51,20 @@ RSpec.describe Dictionary do
   end
 end
 
-  describe "#stack_braille" do
+  describe "#word_convert" do
+    it "will convert a word to braille" do
+      expect(@dictionary.word_convert("cat")).to eq(["00....", "0.....", ".0000."])
+      expect(@dictionary.word_convert("pudding")).to eq(["000.0.", "0...00", "00.0..", "00.0..", ".00...", "00.00.", "0000.."])
+    end
+  end
+
+  describe "#sentence_convert" do
+    it "will return the sentence given as an argument in braille" do
+      expect(@dictionary.sentence_convert("hello world")).to eq(["0.00..", "0..0..", "0.0.0.", "0.0.0.", "0..00.", "......", ".000.0", "0..00.", "0.000.", "0.0.0.", "00.0.."])
+    end
+  end
+
+  xdescribe "#stack_braille" do
     it "will return the braile letter in 2 x 3 layout" do
       expect(@dictionary.stack_braille("c")).to eq("00\n" +
                                                    "..\n" +
@@ -62,16 +75,20 @@ end
     end
   end
 
-  describe "#word_convert" do
-    it "will convert a word to braille" do
-      expect(@dictionary.word_convert("cat")).to eq("00....0......0000.")
-      expect(@dictionary.word_convert("pudding")).to eq("000.0.0...0000.0..00.0...00...00.00.0000..")
+  describe "#stack_braille_word" do
+    it "will return the braile word in 2 x 3 layout" do
+      # expect(@dictionary.stack_braille_word("cat")).to eq("000..0\n" +
+      #                                                     "....00\n" +
+      #                                                     "....0.")
+      expect(@dictionary.stack_braille_word("hello world")).to eq("0.0.0.0.0....00.0.0.00\n" +
+                                                             "00.00.0..0..00.0000..0\n" +
+                                                             "....0.0.0....00.0.0...")
     end
   end
 
-  xdescribe "#sentence_convert" do
-    it "will return the sentence given as an argument in braille" do
-      expect(@dictionary.sentence_convert("hello world")).to eq()
+  describe "#stop_at_40" do
+    it "will create a new line if braile characters are over 40 lines long" do
+      expect()
     end
   end
 end

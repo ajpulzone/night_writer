@@ -42,26 +42,48 @@ class Dictionary
     braille_letter[0]
   end
 
-  def stack_braille(letter)
-    braille_letter = letter_lookup(letter)
-      first_line = braille_letter.slice(0..1)
-      second_line = braille_letter.slice(2..3)
-      third_line = braille_letter.slice(4..5)
-      first_line.insert(2, "\n")
-      second_line.insert(2, "\n")
-      (first_line + second_line + third_line)
-  end
-
   def word_convert(word)
     braille_word = []
     word.each_char do |char|
       braille_word << letter_lookup(char)
     end
-    braille_word.join
+    braille_word
   end
 
   def sentence_convert(message)
-  end 
+    # braille_sentence = []
+    braille_sentence = word_convert(message)
+  end
+
+  # def stack_braille(letter)
+  #   braille_letter = letter_lookup(letter)
+  #     first_line = braille_letter.slice(0..1)
+  #     second_line = braille_letter.slice(2..3)
+  #     third_line = braille_letter.slice(4..5)
+  #     first_line.insert(2, "\n")
+  #     second_line.insert(2, "\n")
+  #     (first_line + second_line + third_line)
+  # end
+
+
+  def stack_braille_word(word)
+    # *need to iterate over the whole word and take the first, second, 3rd pairs
+    # and assign them to lines 1, 2, 3
+    braille_word = word_convert(word)
+    first_line = []
+    second_line = []
+    third_line = []
+    braille_word.each do |char|
+    first_line << char.slice(0..1)
+    second_line << char.slice(2..3)
+    third_line << char.slice(4..5)
+    end
+    output = ("#{first_line.join}\n" + "#{second_line.join}\n" + "#{third_line.join}")
+    output
+  end
+
+  end
+
 
 end
 
