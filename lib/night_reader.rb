@@ -1,3 +1,5 @@
+require "./lib/dictionary.rb"
+
 class NightReader
   attr_reader :file
 
@@ -8,9 +10,11 @@ class NightReader
 
   def file_writer(message)
     dictionary = Dictionary.new
-    english_file = File.open(ARGV[1], "w")
-    english_file.write(message)
-    english_file.close
+    file = File.open(ARGV[0], 'r')
+    message_text = file.read
+    message = dictionary.braille_letter_lookup(message_text)
+    file = File.open(ARGV[1], "w")
+    file.write(message)
     puts "Created #{ARGV[1]} containing #{message.length} characters."
   end
 end
