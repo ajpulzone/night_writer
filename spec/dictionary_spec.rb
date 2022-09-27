@@ -58,35 +58,18 @@ end
     end
   end
 
-  describe "#sentence_convert" do
-    it "will return the sentence given as an argument in braille" do
-      expect(@dictionary.sentence_convert("hello world")).to eq(["0.00..", "0..0..", "0.0.0.", "0.0.0.", "0..00.", "......", ".000.0", "0..00.", "0.000.", "0.0.0.", "00.0.."])
-    end
-  end
-
-  xdescribe "#stack_braille" do
-    it "will return the braile letter in 2 x 3 layout" do
-      expect(@dictionary.stack_braille("c")).to eq("00\n" +
-                                                   "..\n" +
-                                                   "..")
-      expect(@dictionary.stack_braille("q")).to eq("00\n" +
-                                                   "00\n" +
-                                                   "0.")
-    end
-  end
-
   describe "#stack_braille_word" do
     it "will return the braile word in 2 x 3 layout" do
-      # expect(@dictionary.stack_braille_word("cat")).to eq("000..0\n" +
-      #                                                     "....00\n" +
-      #                                                     "....0.")
+      expect(@dictionary.stack_braille_word("cat")).to eq("000..0\n" +
+                                                          "....00\n" +
+                                                          "....0.")
       expect(@dictionary.stack_braille_word("hello world")).to eq("0.0.0.0.0....00.0.0.00\n" +
                                                                   "00.00.0..0..00.0000..0\n" +
                                                                   "....0.0.0....00.0.0...")
     end
   end
 
-  describe "#stop_at_40" do
+  xdescribe "#line_control" do
     it "will create a new line if braile characters are over 40 lines long" do
       expect(@dictionary.line_control("hello world hello world hello world hello world hello world hello world hello world hello world")).to eq("0.0.0.0.0....00.0.0.00\n" +
                                                           "00.00.0..0..00.0000..0\n" +

@@ -32,10 +32,10 @@ class Dictionary
                 }
   end
 
-  def letter_lookup(letter)
+  def letter_lookup(char)
     braille_letter = []
     @alphabet.find do |eng_letter, braille|
-      if letter == eng_letter
+      if char == eng_letter
          braille_letter << braille
       end
     end
@@ -49,22 +49,6 @@ class Dictionary
     end
     braille_word
   end
-
-  def sentence_convert(message)
-    # braille_sentence = []
-    braille_sentence = word_convert(message)
-  end
-
-  # def stack_braille(letter)
-  #   braille_letter = letter_lookup(letter)
-  #     first_line = braille_letter.slice(0..1)
-  #     second_line = braille_letter.slice(2..3)
-  #     third_line = braille_letter.slice(4..5)
-  #     first_line.insert(2, "\n")
-  #     second_line.insert(2, "\n")
-  #     (first_line + second_line + third_line)
-  # end
-
 
   def stack_braille_word(word)
     # *need to iterate over the whole word and take the first, second, 3rd pairs
@@ -80,7 +64,6 @@ class Dictionary
     end
     output = ("#{first_line.join}\n" + "#{second_line.join}\n" + "#{third_line.join}")
     output
-    require "pry";binding.pry
   end
 
   def line_control(message)
