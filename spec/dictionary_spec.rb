@@ -78,12 +78,15 @@ RSpec.describe Dictionary do
   describe "#braille_letter_lookup" do
     it "can translate a letter in braille to english" do
       expect(@dictionary.braille_letter_lookup("00....")).to eq("c")
+      expect(@dictionary.braille_letter_lookup("00..00")).to eq("x")
     end
   end
 
-  xdescribe "#braille_word_convert" do
+  describe "#braille_word_convert" do
     it "can translate a word in braille to english" do
       expect(@dictionary.braille_word_convert("00....0......0000.")).to eq("cat")
+      expect(@dictionary.braille_word_convert("0.00..0..0..0.0.0.0.0.0.0..00........000.00..00.0.000.0.0.0.00.0..")).to eq("hello world")
+
     end
   end
 end

@@ -18,6 +18,7 @@ class NightWriter
     braille_writer = File.open(ARGV[1], 'w')
     braille_writer.write(braille_message)
     puts "Created #{ARGV[1]} containing #{braille_message.length} characters"
+    braille_writer.close
   end
 end
 

@@ -12,10 +12,11 @@ class NightReader
     dictionary = Dictionary.new
     file = File.open(ARGV[0], 'r')
     message_text = file.read
-    message = dictionary.braille_letter_lookup(message_text)
+    message = dictionary.braille_word_convert(message_text)
     file = File.open(ARGV[1], "w")
     file.write(message)
     puts "Created #{ARGV[1]} containing #{message.length} characters."
+    file.close
   end
 end
 
