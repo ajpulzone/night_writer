@@ -2,18 +2,14 @@ class NightWriter
   attr_reader :file
 
   def file_reader(message)
-    english_file = File.open(ARGV[0], "r")
-    english_message = english_file.read
-    english_file.close
-  end
-
-  def translator
+    file = File.open(ARGV[0], "r")
+    message = file.read
   end
 
   def file_writer(message)
-    braille_file = File.open(ARGV[1], "w")
-    braille_file.write(message)
-    braille_file.close
+    message = file_reader(ARGV[0])
+    writer = File.open(ARGV[1], "w")
+    writer.write(message)
     puts "Created #{ARGV[1]} containing #{message.length} characters."
   end
 end
@@ -22,6 +18,15 @@ night_writer = NightWriter.new
 night_writer.file_reader(ARGV[0])
 night_writer.file_writer(ARGV[1])
 
+#   def translator
+#     english_translator = Dictionary.new
+#     handle = File.open(ARGV[0], 'r')
+# message_text = handle.read
+# char_nums = message_text.length
+# braille_writer = File.open(ARGV[1], 'w')
+# puts "CREATED #{ARGV[1]} CONTAINING #{char_nums} CHARACTERS"
+# braille_writer.write(english_translator.write_braille(message_text))
+#   end
 
 
 
