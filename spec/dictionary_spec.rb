@@ -71,9 +71,22 @@ end
 
   xdescribe "#line_control" do
     it "will create a new line if braile characters are over 40 lines long" do
-      expect(@dictionary.line_control("hello world hello world hello world hello world hello world hello world hello world hello world")).to eq("0.0.0.0.0....00.0.0.00\n" +
-                                                          "00.00.0..0..00.0000..0\n" +
-                                                          "....0.0.0....00.0.0...")
+      expect(@dictionary.line_control("hello world hello world hello world hello world")).to
+                                   eq("0.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.00\n" +
+                                      "00.00.0..0..00.0000..000.00.0..0..00.0000..000.00.0..0..00.0000..000.00.0..0..00.0000..0\n" +
+                                      "....0.0.0....00.0.0.......0.0.0....00.0.0.......0.0.0....00.0.0.......0.0.0....00.0.0...")
+    end
+  end
+
+  describe "#braille_letter_lookup" do
+    it "can translate a letter in braille to english" do
+      expect(@dictionary.braille_letter_lookup("00....")).to eq("c")
+    end
+  end
+
+  describe "#braille_word_convert" do
+    it "can translate a word in braille to english" do
+      expect(@dictionary.braille_word_convert("00....0......0000.")).to eq("cat")
     end
   end
 end

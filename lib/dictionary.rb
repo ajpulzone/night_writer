@@ -51,8 +51,6 @@ class Dictionary
   end
 
   def stack_braille_word(word)
-    # *need to iterate over the whole word and take the first, second, 3rd pairs
-    # and assign them to lines 1, 2, 3
     braille_word = word_convert(word)
     first_line = []
     second_line = []
@@ -67,11 +65,27 @@ class Dictionary
   end
 
   def line_control(message)
-
+    #stuck on this method, going to work on bralle to english translation
   end
+
+  def braille_letter_lookup(braille_letter)
+    english_letter = []
+    @alphabet.find do |eng_letter, braille|
+      if braille_letter == braille
+         english_letter << eng_letter
+      end
+    end
+    english_letter[0]
 end
 
-
+#not working, can't slice every 6 characters
+def braille_word_convert(braille_word)
+  braille_word_array = []
+  # braille_word.each_char do |char|
+    braille_word_array << braille_word.slice!(0..5)
+    braille_word_array
+end
+end
 
 
 #Make a braille dictionary to have a brail letter lookup, then a whole sentance, etc
