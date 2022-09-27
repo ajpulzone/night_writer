@@ -81,6 +81,7 @@ end
 #not working, can't slice every 6 characters
 def braille_word_convert(braille_word)
   braille_word_array = []
+  require "pry";binding.pry
   # braille_word.each_char do |char|
     braille_word_array << braille_word.slice!(0..5)
     braille_word_array

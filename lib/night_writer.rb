@@ -14,6 +14,7 @@ class NightWriter
     message_text = file.read
     message = dictionary.word_convert(message_text)
     braille_message = message.join
+    # test = dictionary.stack_braille_word(braille_message)  #attempt to get braille stacked when transfered. Not working
     braille_writer = File.open(ARGV[1], 'w')
     braille_writer.write(braille_message)
     puts "Created #{ARGV[1]} containing #{braille_message.length} characters"

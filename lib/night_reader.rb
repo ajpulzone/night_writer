@@ -4,14 +4,10 @@ class NightReader
   def file_reader(message)
     braille_file = File.open(ARGV[0], "r")
     braille_message = braille_file.read
-    braille_file.close
-  end
-
-  def translator
-    #braille to english
   end
 
   def file_writer(message)
+    dictionary = Dictionary.new
     english_file = File.open(ARGV[1], "w")
     english_file.write(message)
     english_file.close
