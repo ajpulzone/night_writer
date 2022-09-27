@@ -81,14 +81,16 @@ end
       #                                                     "....00\n" +
       #                                                     "....0.")
       expect(@dictionary.stack_braille_word("hello world")).to eq("0.0.0.0.0....00.0.0.00\n" +
-                                                             "00.00.0..0..00.0000..0\n" +
-                                                             "....0.0.0....00.0.0...")
+                                                                  "00.00.0..0..00.0000..0\n" +
+                                                                  "....0.0.0....00.0.0...")
     end
   end
 
   describe "#stop_at_40" do
     it "will create a new line if braile characters are over 40 lines long" do
-      expect()
+      expect(@dictionary.line_control("hello world hello world hello world hello world hello world hello world hello world hello world")).to eq("0.0.0.0.0....00.0.0.00\n" +
+                                                          "00.00.0..0..00.0000..0\n" +
+                                                          "....0.0.0....00.0.0...")
     end
   end
 end

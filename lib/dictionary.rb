@@ -80,12 +80,16 @@ class Dictionary
     end
     output = ("#{first_line.join}\n" + "#{second_line.join}\n" + "#{third_line.join}")
     output
+    require "pry";binding.pry
   end
 
+  def line_control(message)
+
   end
-
-
 end
+
+
+
 
 #Make a braille dictionary to have a brail letter lookup, then a whole sentance, etc
 #Focus on the translation portion, then do the same things as the english dictionary
