@@ -7,31 +7,16 @@ class NightWriter
     file = File.open(ARGV[0], "r")
     message = file.read
   end
-  def translator
-    dictionary = Dictionary.new
-    file = File.open(ARGV[0], 'r')
-    message_text = file.read
-    message = (dictionary.word_convert(message_text)).compact
-    require "pry";binding.pry
-    braille_writer = File.open(ARGV[1], 'w')
-    puts "Created #{ARGV[1]} containing #{message.length} characters"
-
-    end
 
   def file_writer(message)
     dictionary = Dictionary.new
     file = File.open(ARGV[0], 'r')
     message_text = file.read
-    message = (dictionary.word_convert(message_text)).compact
+    message = dictionary.word_convert(message_text)
     braille_message = message.join
-    # require "pry";binding.pry
     braille_writer = File.open(ARGV[1], 'w')
     braille_writer.write(braille_message)
     puts "Created #{ARGV[1]} containing #{braille_message.length} characters"
-    # message = file_reader(ARGV[0])
-    # writer = File.open(ARGV[1], "w")
-    # writer.write(message)
-    # puts "Created #{ARGV[1]} containing #{message.length} characters."
   end
 end
 
