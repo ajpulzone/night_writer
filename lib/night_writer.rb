@@ -1,14 +1,38 @@
+class NightWriter
+  attr_reader :file
 
-english_file = File.open(ARGV[0], "r")
-english_message = english_file.read
-english_file.close
+  def file_reader(message)
+    file = File.read(message)
+  end
 
-braille_file = File.open(ARGV[1], "w")
-braille_file.write(english_message)
-braille_file.close
-puts "Created #{ARGV[1]} containing #{english_message.length} characters."
+  def translator
+  end
+
+  def file_writer(message)
+    incoming_text = file_reader(ARGV[0])
+    file = File.open(message)
+    text = file.write(incoming_text)
+    puts "Created #{ARGV[1]} containing #{incoming_text.length} characters."
+  end
+end
+
+night_writer = NightWriter.new
+night_writer.file_reader(ARGV[0])
+night_writer.file_writer(ARGV[1])
 
 
+
+
+# english_file = File.open(ARGV[0], "r")
+# english_message = english_file.read
+# english_file.close
+#
+# braille_file = File.open(ARGV[1], "w")
+# braille_file.write(english_message)
+# braille_file.close
+# puts "Created #{ARGV[1]} containing #{english_message.length} characters."
+#
+#
 
 
 
@@ -55,7 +79,7 @@ puts "Created #{ARGV[1]} containing #{english_message.length} characters."
 # night_writer = NightWriter.new
 # night_writer.file_reader(ARGV[0])
 # night_writer.file_writer(ARGV[1])
-
+#
 # # File.open(message, "r") do |file|  #this lets me iterate through the message
 # #   file.read
 #
