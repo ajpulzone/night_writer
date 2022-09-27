@@ -48,8 +48,8 @@ RSpec.describe Dictionary do
   describe "#letter_lookup" do
     it "will take an english letter as an argument and return the braille equivilent" do
       expect(@dictionary.letter_lookup("c")).to eq("00....")
+    end
   end
-end
 
   describe "#word_convert" do
     it "will convert a word to braille" do
@@ -62,19 +62,16 @@ end
     it "will return the braile word in 2 x 3 layout" do
       expect(@dictionary.stack_braille_word("cat")).to eq("000..0\n" +
                                                           "....00\n" +
-                                                          "....0.")
+                                                          "....0.\n")
       expect(@dictionary.stack_braille_word("hello world")).to eq("0.0.0.0.0....00.0.0.00\n" +
                                                                   "00.00.0..0..00.0000..0\n" +
-                                                                  "....0.0.0....00.0.0...")
+                                                                  "....0.0.0....00.0.0...\n")
     end
-  end
 
-  xdescribe "#line_control" do
-    it "will create a new line if braile characters are over 40 lines long" do
-      expect(@dictionary.line_control("hello world hello world hello world hello world")).to
-                                   eq("0.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.00\n" +
-                                      "00.00.0..0..00.0000..000.00.0..0..00.0000..000.00.0..0..00.0000..000.00.0..0..00.0000..0\n" +
-                                      "....0.0.0....00.0.0.......0.0.0....00.0.0.......0.0.0....00.0.0.......0.0.0....00.0.0...")
+    it "will create a new line if thre are more than 40 brail pairs" do
+      expect(@dictionary.stack_braille_word("happy days are here again")).to eq("0.0.000000..000.00.0..0.0.0...0.0.0.0...\n" +
+                                                                                "00..0.0..0...0...00.....00.0..00.000.0..\n" +
+                                                                                "....0.0.00......000.....0.........0.....\n")
     end
   end
 
@@ -84,7 +81,7 @@ end
     end
   end
 
-  describe "#braille_word_convert" do
+  xdescribe "#braille_word_convert" do
     it "can translate a word in braille to english" do
       expect(@dictionary.braille_word_convert("00....0......0000.")).to eq("cat")
     end

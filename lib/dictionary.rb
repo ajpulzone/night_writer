@@ -52,6 +52,8 @@ class Dictionary
 
   def stack_braille_word(word)
     braille_word = word_convert(word)
+    counter = 0
+    stacked_braille_output = ""
     first_line = []
     second_line = []
     third_line = []
@@ -59,14 +61,18 @@ class Dictionary
     first_line << char.slice(0..1)
     second_line << char.slice(2..3)
     third_line << char.slice(4..5)
+    counter += 1
     end
-    output = ("#{first_line.join}\n" + "#{second_line.join}\n" + "#{third_line.join}")
-    output
-  end
-
-  def line_control(message)
-    #stuck on this method, going to work on bralle to english translation
-  end
+    # require "pry";binding.pry
+    #if line.length >40 && line.
+    while counter > 0
+      stacked_braille_output += (first_line.shift(20).join + "\n" + second_line.shift(20).join + "\n" + third_line.shift(20).join)
+# require "pry";binding.pry
+      stacked_braille_output += "\n" if counter > 0
+      break
+    end
+    stacked_braille_output
+    end
 
   def braille_letter_lookup(braille_letter)
     english_letter = []
