@@ -1,10 +1,7 @@
-require "./lib/file_manageable_module.rb"
-
 class Dictionary
-  include FileManeagable
   attr_reader :alphabet
 
-  def initialize(alphabet)
+  def initialize
     @alphabet = {"a" => "0.....",
                 "b" => "0.0...",
                 "c" => "00....",
@@ -30,26 +27,52 @@ class Dictionary
                 "w" => ".000.0",
                 "x" => "00..00",
                 "y" => "00.000",
-                "z" => "0..000"
+                "z" => "0..000",
+                " " => "......"
                 }
   end
 
-  def letter_lookup(letter)
+  def letter_lookup(char)
+    braille_letter = []
     @alphabet.find do |eng_letter, braille|
-      if letter == eng_letter
-         return braille
+      if char == eng_letter
+         braille_letter << braille
       end
     end
+    braille_letter[0]
   end
 
-  def stack_braille(letter)
-    braille_letter = letter_lookup(letter)
-      first_line = braille_letter.slice(0..1)
-      second_line = braille_letter.slice(2..3)
-      third_line = braille_letter.slice(4..5)
-      first_line.insert(2, "\n")
-      second_line.insert(2, "\n")
-      (first_line + second_line + third_line)
+  def word_convert(word)
+    braille_word = []
+    word.each_char do |char|
+      braille_word << letter_lookup(char)
+    end
+    braille_word
   end
 
+  def stack_braille_word(word)
+    # *need to iterate over the whole word and take the first, second, 3rd pairs
+    # and assign them to lines 1, 2, 3
+    braille_word = word_convert(word)
+    first_line = []
+    second_line = []
+    third_line = []
+    braille_word.each do |char|
+    first_line << char.slice(0..1)
+    second_line << char.slice(2..3)
+    third_line << char.slice(4..5)
+    end
+    output = ("#{first_line.join}\n" + "#{second_line.join}\n" + "#{third_line.join}")
+    output
+  end
+
+  def line_control(message)
+
+  end
 end
+
+
+
+
+#Make a braille dictionary to have a brail letter lookup, then a whole sentance, etc
+#Focus on the translation portion, then do the same things as the english dictionary
