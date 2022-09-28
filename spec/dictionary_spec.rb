@@ -1,5 +1,4 @@
 require "./lib/dictionary.rb"
-require "./lib/file_manageable_module.rb"
 
 RSpec.describe Dictionary do
 
@@ -13,7 +12,6 @@ RSpec.describe Dictionary do
     end
 
     it "has readable attributes" do
-      # expect(@dictionary.word).to eq("hello world")
       expect(@dictionary.alphabet).to eq(alphabet = {"a" => "0.....",
                                                     "b" => "0.0...",
                                                     "c" => "00....",
@@ -41,7 +39,7 @@ RSpec.describe Dictionary do
                                                     "y" => "00.000",
                                                     "z" => "0..000",
                                                     " " => "......"
-                                        })
+                                                    })
     end
   end
 
@@ -58,7 +56,7 @@ RSpec.describe Dictionary do
     end
   end
 
-  describe "#stack_braille" do
+  describe "#stack_braille_word" do
     it "will return the braile word in 2 x 3 layout" do
       expect(@dictionary.stack_braille_word("cat")).to eq("000..0\n" +
                                                           "....00\n" +
@@ -73,6 +71,14 @@ RSpec.describe Dictionary do
                                                                                 "00..0.0..0...0...00.....00.0..00.000.0....00..0..0\n" +
                                                                                 "....0.0.00......000.....0.........0.............0.\n")
     end
+  end
+
+  xdescribe "#english_translator" do
+      it "returns a stacked braille message from an english message" do
+        expect(@dictionary.english_translator("happy days are here again")).to eq("0.0.000000..000.00.0..0.0.0...0.0.0.0...0.000..000\n" +
+                                                                                  "00..0.0..0...0...00.....00.0..00.000.0....00..0..0\n" +
+                                                                                  "....0.0.00......000.....0.........0.............0.\n")
+      end
   end
 
   describe "#braille_letter_lookup" do
