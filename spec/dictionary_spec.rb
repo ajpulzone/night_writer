@@ -12,7 +12,6 @@ RSpec.describe Dictionary do
     end
 
     it "has readable attributes" do
-      # expect(@dictionary.word).to eq("hello world")
       expect(@dictionary.alphabet).to eq(alphabet = {"a" => "0.....",
                                                     "b" => "0.0...",
                                                     "c" => "00....",
@@ -40,7 +39,7 @@ RSpec.describe Dictionary do
                                                     "y" => "00.000",
                                                     "z" => "0..000",
                                                     " " => "......"
-                                        })
+                                                    })
     end
   end
 
@@ -57,7 +56,7 @@ RSpec.describe Dictionary do
     end
   end
 
-  describe "#stack_braille" do
+  describe "#stack_braille_word" do
     it "will return the braile word in 2 x 3 layout" do
       expect(@dictionary.stack_braille_word("cat")).to eq("000..0\n" +
                                                           "....00\n" +
