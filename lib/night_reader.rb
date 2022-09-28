@@ -6,6 +6,7 @@ class NightReader
   def file_reader(message)
     braille_file = File.open(ARGV[0], "r")
     braille_message = braille_file.read
+    braille_file.close
   end
 
   def file_writer(message)
