@@ -105,7 +105,7 @@ def braille_word_convert(braille_word)
 def unstack_braille(message)
   letter_array = []
   counter = 0
-  loop_stop = (message.length%6)
+  loop_stop = (message.length/6)
   message_array = message.split("\n")
   length = message_array.length
     while counter < loop_stop
@@ -118,12 +118,10 @@ def unstack_braille(message)
   letter_array.join
 end
 
-  # def braille_translator(message)
-  #   unstacked = unstack_braille(message)
-  #   converted_braille = braille_word_convert(unstacked)
-  #   require "pry";binding.pry
-  #
-  # end
+  def braille_translator(message)
+    unstacked = unstack_braille(message)
+    converted_braille = braille_word_convert(unstacked)
+  end
 end
 
 

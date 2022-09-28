@@ -94,16 +94,18 @@ RSpec.describe Dictionary do
     it "will return an english message from stacked braille" do
       expect(@dictionary.unstack_braille("000..0\n" +
                                         "....00\n" +
-                                        "....0.\n")).to eq(["00....", "0.....", ".0000."])
+                                        "....0.\n")).to eq("00....0......0000.")
     end
   end
 
-  # describe "#braille_translator" do
-  #   it "translates a stacked braille message to english" do
-  #     expect(@dictionary.braille_translator("000..0\n" +
-  #                                       "....00\n" +
-  #                                       "....0.\n")).to eq("cat")
-  #     expect(@dictionary.braille_translator())
-  #   end
-  # end
+  describe "#braille_translator" do
+    it "translates a stacked braille message to english" do
+      expect(@dictionary.braille_translator("000..0\n" +
+                                        "....00\n" +
+                                        "....0.\n")).to eq("cat")
+      expect(@dictionary.braille_translator("0.0.0.0.0....00.0.0.00\n" +
+                                             "00.00.0..0..00.0000..0\n" +
+                                             "....0.0.0....00.0.0...\n")).to eq("hello world")
+    end
+  end
 end
