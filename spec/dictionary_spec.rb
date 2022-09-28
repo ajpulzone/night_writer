@@ -58,7 +58,7 @@ RSpec.describe Dictionary do
     end
   end
 
-  describe "#stack_braille_word" do
+  describe "#stack_braille" do
     it "will return the braile word in 2 x 3 layout" do
       expect(@dictionary.stack_braille_word("cat")).to eq("000..0\n" +
                                                           "....00\n" +
@@ -69,9 +69,9 @@ RSpec.describe Dictionary do
     end
 
     it "will create a new line if thre are more than 40 brail pairs" do
-      expect(@dictionary.stack_braille_word("happy days are here again")).to eq("0.0.000000..000.00.0..0.0.0...0.0.0.0...\n" +
-                                                                                "00..0.0..0...0...00.....00.0..00.000.0..\n" +
-                                                                                "....0.0.00......000.....0.........0.....\n")
+      expect(@dictionary.stack_braille_word("happy days are here again")).to eq("0.0.000000..000.00.0..0.0.0...0.0.0.0...0.000..000\n" +
+                                                                                "00..0.0..0...0...00.....00.0..00.000.0....00..0..0\n" +
+                                                                                "....0.0.00......000.....0.........0.............0.\n")
     end
   end
 
@@ -87,6 +87,25 @@ RSpec.describe Dictionary do
       expect(@dictionary.braille_word_convert("00....0......0000.")).to eq("cat")
       expect(@dictionary.braille_word_convert("0.00..0..0..0.0.0.0.0.0.0..00........000.00..00.0.000.0.0.0.00.0..")).to eq("hello world")
 
+    end
+  end
+
+  describe "#unstack_braille" do
+    it "will return an english message from stacked braille" do
+      expect(@dictionary.unstack_braille("000..0\n" +
+                                        "....00\n" +
+                                        "....0.\n")).to eq("00....0......0000.")
+    end
+  end
+
+  describe "#braille_translator" do
+    it "translates a stacked braille message to english" do
+      expect(@dictionary.braille_translator("000..0\n" +
+                                        "....00\n" +
+                                        "....0.\n")).to eq("cat")
+      expect(@dictionary.braille_translator("0.0.0.0.0....00.0.0.00\n" +
+                                             "00.00.0..0..00.0000..0\n" +
+                                             "....0.0.0....00.0.0...\n")).to eq("hello world")
     end
   end
 end
