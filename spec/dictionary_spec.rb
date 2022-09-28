@@ -75,6 +75,14 @@ RSpec.describe Dictionary do
     end
   end
 
+  xdescribe "#english_translator" do
+      it "returns a stacked braille message from an english message" do
+        expect(@dictionary.english_translator("happy days are here again")).to eq("0.0.000000..000.00.0..0.0.0...0.0.0.0...0.000..000\n" +
+                                                                                  "00..0.0..0...0...00.....00.0..00.000.0....00..0..0\n" +
+                                                                                  "....0.0.00......000.....0.........0.............0.\n")
+      end
+  end
+
   describe "#braille_letter_lookup" do
     it "can translate a letter in braille to english" do
       expect(@dictionary.braille_letter_lookup("00....")).to eq("c")

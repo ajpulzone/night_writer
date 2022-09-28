@@ -71,6 +71,14 @@ class Dictionary
     stacked_braille_output
   end
 
+#Method not working, has to do with how I look up letters in english to translate to braille.
+  def english_translator(message)
+    braille_message = word_convert(message)
+    final_braille_message = stack_braille_word(braille_message)
+    final_braille_message
+  end
+
+
   def braille_letter_lookup(braille_letter)
     english_letter = []
     @alphabet.find do |eng_letter, braille|
@@ -100,7 +108,6 @@ def braille_word_convert(braille_word)
     end
   letters.join
   end
-
 
 def unstack_braille(message)
   letter_array = []
